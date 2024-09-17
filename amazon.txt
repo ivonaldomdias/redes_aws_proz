@@ -1,0 +1,46 @@
+1. Configuração da Instância EC2
+Primeiro, acessei o Console da AWS e naveguei até o serviço EC2:
+Criei uma nova instância EC2 usando a imagem do Amazon Linux 2. Essa versão é otimizada para a nuvem e recomendada para esse tipo de uso.
+Escolhi um tipo de instância baseado na necessidade de recursos da banda. Como o uso inicial será para organizar arquivos e documentos, uma instância básica como a t2.micro (elegível para o nível gratuito da AWS) foi suficiente.
+
+2. Conexão via SSH
+Após a instância ser criada:
+Baixei a chave privada (.pem) necessária para fazer a conexão.
+No terminal local, usei o comando SSH para conectar na instância.
+
+3. Gerenciando o Armazenamento
+Agora, com a instância em execução, explorei as opções de armazenamento:
+Naveguei até a seção de Elastic Block Store (EBS) para criar um novo volume de armazenamento adicional, definindo o tamanho de acordo com as necessidades da banda, por exemplo, 20 GB.
+Depois de criar o volume, fui até a seção de volumes e o anexei à instância EC2.
+
+4. Formatando e Montando o Volume
+Com o volume anexado à instância, eu:
+Usei o comando lsblk para verificar o volume não formatado. O volume aparecia como um dispositivo como /dev/xvdf.
+Para formatá-lo, usei um sistema de arquivos como o ext4:
+sudo mkfs -t ext4 /dev/xvdf
+Depois disso, montei o volume em um diretório da instância, criando uma pasta, por exemplo, /mnt/volume1:
+sudo mkdir /mnt/volume1
+sudo mount /dev/xvdf /mnt/volume1
+
+5. Criação de Arquivos
+Com o volume montado, criei um arquivo simples no diretório usando o editor nano:
+sudo nano /mnt/volume1/documento_banda.txt
+Adicionei algum conteúdo básico ao arquivo e salvei.
+
+6. Explorando Recursos
+Verifiquei o status do volume montado e o conteúdo usando alguns comandos:
+ls para listar o conteúdo do volume:
+ls /mnt/volume1
+df -h para verificar o espaço em disco:
+df -h
+mount para verificar se o volume está montado corretamente:
+mount | grep /mnt/volume1
+cat para visualizar o conteúdo do arquivo criado:
+cat /mnt/volume1/documento_banda.txt
+Após esses passos, capturei um print do terminal mostrando os comandos e o arquivo criado.
+
+Para evitar custos adicionais, finalizei a instância usando o comando:
+sudo shutdown -h now
+E encerrei o volume no console da AWS.
+
+Esse processo cria uma instância EC2 com um volume anexado, onde a banda pode armazenar e organizar seus arquivos importantes de forma segura e eficiente na nuvem!
