@@ -1,0 +1,35 @@
+Para o show da banda de Miguel, precisamos montar uma rede de computadores para garantir que a comunicação entre os membros da equipe de produção, espalhados pelo teatro, seja eficiente. Como o agente da banda decidiu modernizar essa parte, vou usar o Cisco Packet Tracer para criar uma topologia de rede em estrela, onde todos os membros vão poder se comunicar facilmente.
+
+1. Definir o Cenário
+Imaginando que cada membro da equipe tem um computador, todos eles precisam estar conectados em uma rede. Assim, podem se comunicar sem problemas durante o show.
+
+2. Montando a Topologia
+Primeiro, no Cisco Packet Tracer, eu:
+
+Crio uma nova topologia;
+Arrasto um switch para o centro, que vai ser o ponto principal de conexão;
+Em seguida, coloco quatro PCs ao redor, representando os membros da equipe de produção.
+3. Conectando os Dispositivos
+Cada PC vai ser conectado ao switch com cabos ethernet. Assim, os PCs ficam ligados em uma topologia de estrela, com o switch centralizando a comunicação. Conecto os cabos da seguinte forma:
+
+PC0 na porta FastEthernet0/1 do switch;
+PC1 na porta FastEthernet0/2;
+PC2 na porta FastEthernet0/3;
+PC3 na porta FastEthernet0/4.
+4. Configurar os Endereços IP
+Agora, vou dar uma "identidade" a cada computador, atribuindo um endereço IP diferente para cada um, mas na mesma sub-rede:
+
+PC0: IP - 192.168.1.2 / Subnet Mask - 255.255.255.0
+PC1: IP - 192.168.1.3 / Subnet Mask - 255.255.255.0
+PC2: IP - 192.168.1.4 / Subnet Mask - 255.255.255.0
+PC3: IP - 192.168.1.5 / Subnet Mask - 255.255.255.0
+Aqui, não preciso configurar um gateway, já que a rede é simples e local.
+
+5. Testar a Comunicação
+Para garantir que a comunicação está funcionando, eu vou em um dos PCs, abro o Prompt de Comando, e testo a conexão com os outros PCs usando o comando ping. Por exemplo, se eu estiver no PC0, vou testar assim:
+ping 192.168.1.3
+ping 192.168.1.4
+ping 192.168.1.5
+Se tudo estiver certo, cada ping vai retornar uma resposta, confirmando que a rede está configurada corretamente.
+
+Por fim, vou salvar o arquivo do Cisco Packet Tracer com a topologia montada, tirar um print da rede e também do comando ping mostrando que está tudo funcionando. Depois, é só enviar o arquivo e as capturas de tela.
